@@ -10,7 +10,23 @@ export const AppState = reactive({
   /**@type {import('./models/Keep.js').Keep[]} */
   Keeps: [],
   /**@type {import('./models/Keep.js').Keep} */
-  Keep: null
+  Keep: null,
+  /**@type {import('./models/Keep.js').VaultKeep} */
+  vaultKeep: null,
+  /**@type {import('./models/Keep.js').VaultKeep[]} */
+  vaultKeeps: [],
+  
+  /**@type {import('./models/Profile.js').Profile} */
+  profile: null,
+
+  /**@type {import('./models/Vault.js').Vault} */
+  vault: null,
+  /**@type {import('./models/Vault.js').Vault[]} */
+  vaults: [],
+
+  desperateAttemptWithFleetingHope: null,
+
+  keepInVault: false
 
 })
 

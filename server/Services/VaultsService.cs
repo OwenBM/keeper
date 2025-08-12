@@ -1,5 +1,6 @@
 
 
+
 namespace keeper.Services;
 
 public class VaultsService
@@ -38,10 +39,26 @@ public class VaultsService
         return originalVault;
     }
 
+    internal List<Vault> GetMyVaults(string userId)
+    {
+        List<Vault> vaults = _vaultsRepository.GetMyVaults(userId);
+        return vaults;
+    }
+
     internal Vault GetVaultById(int vaultId)
     {
         Vault vault = _vaultsRepository.GetVaultById(vaultId);
         if (vault == null) throw new Exception($"Invalid id: {vaultId}");
+        return vault;
+    }
+    internal Vault GetVaultById(int vaultId, Account userInfo)
+    {
+        Vault vault = _vaultsRepository.GetVaultById(vaultId);
+        if (vault == null) throw new Exception($"Invalid id: {vaultId}");
+        if (vault.IsPrivate == true && vault.CreatorId != userInfo?.Id)
+        {
+            throw new Exception($"Invalid id: '{vaultId}");
+        }
         return vault;
     }
 }

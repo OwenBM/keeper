@@ -4,8 +4,10 @@ CREATE TABLE IF NOT EXISTS accounts (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
     name VARCHAR(255) COMMENT 'User Name',
     email VARCHAR(255) UNIQUE COMMENT 'User Email',
-    picture VARCHAR(255) COMMENT 'User Picture'
+    cover_img varchar(1000) DEFAULT 'https://images.unsplash.com/photo-1754799399805-da0178249638?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' NOT NULL picture VARCHAR(255) COMMENT 'User Picture'
 ) default charset utf8mb4 COMMENT '';
+
+SELECT * FROM accounts
 
 CREATE TABLE keeps (
     id INT PRIMARY KEY AUTO_INCREMENT,

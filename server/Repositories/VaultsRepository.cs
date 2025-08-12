@@ -2,6 +2,7 @@
 
 
 
+
 namespace keeper.Repositories;
 
 public class VaultsRepository
@@ -66,6 +67,15 @@ public class VaultsRepository
         is_private = @IsPrivate
         WHERE id = @Id LIMIT 1;";
         _db.Execute(sql, originalVault);
+    }
+
+    internal List<Vault> GetMyVaults(string userId)
+    {
+        string sql = @"
+        SELECT * FROM vaults WHERE vaults.creator_id = @userId
+        ;";
+        List<Vault> vault = _db.Query<Vault>(sql, new { userId }).ToList();
+        return vault;
     }
 
     internal Vault GetVaultById(int vaultId)

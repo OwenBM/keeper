@@ -39,7 +39,7 @@ public class VaultKeepService
     internal List<VaultKeepKeeps> GetKeepsByVaultId(int vaultId, Account userInfo)
     {
         Vault vault = _vaultsService.GetVaultById(vaultId);
-        if (vault.IsPrivate == true && vault.CreatorId != userInfo.Id) throw new Exception("You cannot add keeps to another user's vault");
+        if (vault.IsPrivate == true && vault.CreatorId != userInfo?.Id) throw new Exception($"Invalid id:{vaultId}");
         List<VaultKeepKeeps> vaultKeepKeeps = _vaultKeepRepository.GetKeepsByVaultId(vaultId);
         return vaultKeepKeeps;
     }

@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace keeper.Controllers;
 
 [Authorize]
@@ -7,11 +9,14 @@ public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
   private readonly Auth0Provider _auth0Provider;
+  private readonly VaultsService _vaultsService;
 
-  public AccountController(AccountService accountService, Auth0Provider auth0Provider)
+  public AccountController(AccountService accountService, Auth0Provider auth0Provider, VaultsService vaultsService)
   {
     _accountService = accountService;
     _auth0Provider = auth0Provider;
+    _vaultsService = vaultsService;
+
   }
 
   [HttpGet]
@@ -27,4 +32,21 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [HttpGet("vaults")]
+  public async Task<ActionResult<List<Vault>>> GetMyVaults()
+  {
+    Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+    List<Vault> vaults = _vaultsService.GetMyVaults(userInfo.Id);
+    return vaults;
+  }
+
+  [HttpPut]
+  public async Task<ActionResult<Account>> EditAccount([FromBody] Account accountData)
+  {
+    Account UserInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+    Account newAccount = _accountService.Edit(accountData, UserInfo.Id);
+    return newAccount;
+  }
+
 }

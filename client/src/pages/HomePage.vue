@@ -8,7 +8,7 @@ import { computed, onMounted } from 'vue';
 const keeps = computed(() => AppState.Keeps)
 
 onMounted(() => {
-  getAllKeeps()
+  getAllKeeps();
 })
 
 async function getAllKeeps() {
@@ -18,13 +18,14 @@ async function getAllKeeps() {
   catch (error) {
     Pop.error(error);
   }
+
 }
 </script>
 
 <template>
-  <section class="container mt-3">
-    <div class="row keep-card">
-      <div class="col-3" v-for="keep in keeps" :key="'keep-id-' + keep.id">
+  <section class="container-fluid mt-3">
+    <div class="row keep-card justify-content-center">
+      <div class="col-3" v-for="keep in keeps" :key="'keep-id-' + keep.id" :title="'take a look at ' + keep.name">
         <KeepCard :keep="keep" />
       </div>
     </div>

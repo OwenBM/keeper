@@ -53,4 +53,12 @@ public class KeepsService
         if (keep == null) throw new Exception($"Invalid id: {keepId}");
         return keep;
     }
+
+    internal Keep incrementViews(int keepId, Account userInfo)
+    {
+        Keep keep = GetKeepById(keepId);
+        keep.Views++;
+        _keepRepo.UpdateViews(keep);
+        return keep;
+    }
 }

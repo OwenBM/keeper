@@ -1,4 +1,6 @@
 <script setup>
+import CreateAlbumModal from './components/CreateAlbumModal.vue';
+import CreateKeepModal from './components/CreateKeepModal.vue';
 import KeepDetailsModal from './components/KeepDetailsModal.vue';
 import Navbar from './components/Navbar.vue';
 import { RouterView } from 'vue-router';
@@ -6,7 +8,7 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <header>
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main>
@@ -15,7 +17,9 @@ import { RouterView } from 'vue-router';
   <footer class=" text-center">
     Made with <i class="mdi mdi-heart text-pink"></i> by CodeWorks
   </footer>
-  <KeepDetailsModal modalId="exampleModal" />
+  <KeepDetailsModal />
+  <CreateAlbumModal />
+  <CreateKeepModal />
 </template>
 
 <style lang="scss">
