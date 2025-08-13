@@ -11,11 +11,11 @@ const albumData = ref({
     isPrivate: false
 })
 
-async function createAlbum() {
+async function createVault() {
     logger.log(albumData)
-    vaultsService.createAlbum(albumData.value)
+    vaultsService.createVault(albumData.value)
     clearForm()
-    Modal.getOrCreateInstance('#CreateAlbumModal').hide();
+    Modal.getOrCreateInstance('#CreateVaultModal').hide();
 }
 
 function clearForm() {
@@ -35,7 +35,7 @@ function clearForm() {
             <div class="modal-content">
                 <div class="modal-body">
                     <h2 class="mb-4 text-center">Create Album</h2>
-                    <form @submit.prevent="createAlbum()">
+                    <form @submit.prevent="createVault()">
                         <div class="row">
                             <div class="col-6">
                                 <label for="form-name">Name</label>

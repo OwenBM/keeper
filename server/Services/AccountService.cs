@@ -29,12 +29,14 @@ public class AccountService
     return account;
   }
 
-  internal Account Edit(Account editData, string accountId)
+  internal Account Edit(Account editData, Account userInfo)
   {
-    Account original = GetAccount(accountId);
+    Account original = GetAccount(userInfo.Id);
+    if (original.Id != userInfo.Id) throw new Exception("You cannot edit another user's account!");
     original.Name = editData.Name ?? original.Name;
     original.Picture = editData.Picture ?? original.Picture;
     original.CoverImg = editData.CoverImg ?? original.CoverImg;
-    return _repo.Edit(original);
+    _repo.Edit(original);
+    return original;
   }
 }

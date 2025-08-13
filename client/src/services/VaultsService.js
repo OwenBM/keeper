@@ -18,13 +18,14 @@ class VaultsService{
         AppState.vaultKeeps = response.data.map(pojo => new VaultKeep(pojo))
     }
 
-    async createAlbum(albumData) {
+    async createVault(albumData) {
         const response = await api.post("api/vaults", albumData)
         logger.log(response.data)
         AppState.vaults.push(new Vault(response.data))
     }
 
-    async getAlbumById(vaultId){
+    async getVaultById(vaultId){
+        AppState.vault = null
         const response = await api.get(`api/vaults/${vaultId}`)
         logger.log(response.data)
         AppState.vault = new Vault(response.data)

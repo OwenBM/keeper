@@ -35,7 +35,7 @@ public class ProfilesRepository
         string sql = @"
         SELECT * 
         FROM vaults 
-        WHERE vaults.creator_id = @profileId AND is_private = false
+        WHERE vaults.creator_id = @profileId
         ;";
         List<Vault> vaults = _db.Query<Vault>(sql, new { profileId }).ToList();
         return vaults;

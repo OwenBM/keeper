@@ -1,8 +1,10 @@
 <script setup>
+import { computed } from 'vue';
 import Login from './Login.vue';
+import { AppState } from '@/AppState.js';
 
 
-
+const account = computed(() => AppState.account)
 
 </script>
 
@@ -17,12 +19,14 @@ import Login from './Login.vue';
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="mdi mdi-menu text-light"></span>
       </button>
-      <button class="btn btn-secondary-outline fs-4" data-bs-toggle="modal" data-bs-target="#CreateAlbumModal">
-        Album<span class="mdi mdi-plus"></span>
-      </button>
-      <button class="btn btn-secondary-outline fs-4" data-bs-toggle="modal" data-bs-target="#CreateKeepModal">
-        Keep<span class="mdi mdi-plus"></span>
-      </button>
+      <div v-if="account">
+        <button class="btn btn-secondary-outline fs-4" data-bs-toggle="modal" data-bs-target="#CreateAlbumModal">
+          Album<span class="mdi mdi-plus"></span>
+        </button>
+        <button class="btn btn-secondary-outline fs-4" data-bs-toggle="modal" data-bs-target="#CreateKeepModal">
+          Keep<span class="mdi mdi-plus"></span>
+        </button>
+      </div>
       <!-- collapsing menu -->
       <div class="collapse navbar-collapse d-flex justify-content-end" id="navbar-links">
         <Login />

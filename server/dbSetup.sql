@@ -53,3 +53,5 @@ CREATE TABLE vaultkeeps (
     FOREIGN KEY (keep_id) REFERENCES keeps (id) ON DELETE CASCADE,
     FOREIGN KEY (vault_id) REFERENCES vaults (id) ON DELETE CASCADE
 )
+
+-- SELECT * FROM vaults;

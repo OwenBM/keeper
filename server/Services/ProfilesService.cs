@@ -1,6 +1,8 @@
 
 
 
+using Microsoft.AspNetCore.Http;
+
 namespace keeper.Services;
 
 public class ProfilesService
@@ -27,5 +29,11 @@ public class ProfilesService
     {
         List<Vault> vaults = _profilesRepository.GetVaultsByProfileId(profileId);
         return vaults;
+    }
+
+    internal List<Vault> GetVaultsByProfileId(string profileId, Account userInfo)
+    {
+        List<Vault> vaults = GetVaultsByProfileId(profileId);
+        return vaults.FindAll(vault => vault.IsPrivate == false || vault.CreatorId == userInfo?.Id);
     }
 }

@@ -8,9 +8,11 @@ namespace keeper.Controllers;
 public class ProfilesController : ControllerBase
 {
     private readonly ProfilesService _profilesService;
-    public ProfilesController(ProfilesService profilesService)
+    private readonly Auth0Provider _auth;
+    public ProfilesController(ProfilesService profilesService, Auth0Provider auth)
     {
         _profilesService = profilesService;
+        _auth = auth;
     }
 
     [HttpGet("{profileId}")]
@@ -42,11 +44,12 @@ public class ProfilesController : ControllerBase
     }
 
     [HttpGet("{profileId}/vaults")]
-    public ActionResult<List<Vault>> GetVaultsByProfileId(string profileId)
+    public async Task<ActionResult<List<Vault>>> GetVaultsByProfileId(string profileId)
     {
         try
         {
-            List<Vault> vaults = _profilesService.GetVaultsByProfileId(profileId);
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            List<Vault> vaults = _profilesService.GetVaultsByProfileId(profileId, userInfo);
             return vaults;
         }
         catch (Exception exception)

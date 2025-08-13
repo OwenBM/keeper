@@ -1,9 +1,9 @@
 <script setup>
-import CreateAlbumModal from './components/CreateAlbumModal.vue';
 import CreateKeepModal from './components/CreateKeepModal.vue';
 import KeepDetailsModal from './components/KeepDetailsModal.vue';
 import Navbar from './components/Navbar.vue';
 import { RouterView } from 'vue-router';
+import CreateVaultModal from './components/CreateVaultModal.vue';
 
 </script>
 
@@ -18,7 +18,7 @@ import { RouterView } from 'vue-router';
     Made with <i class="mdi mdi-heart text-pink"></i> by CodeWorks
   </footer>
   <KeepDetailsModal />
-  <CreateAlbumModal />
+  <CreateVaultModal />
   <CreateKeepModal />
 </template>
 

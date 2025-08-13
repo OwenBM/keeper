@@ -13,6 +13,7 @@ const router = useRouter();
 
 const vault = computed(() => AppState.vault)
 const keeps = computed(() => AppState.vaultKeeps)
+const account = computed(() => AppState.account)
 
 onMounted(() => {
     getVaultById();
@@ -26,13 +27,14 @@ onUnmounted(() => {
 
 async function getVaultById() {
     try {
-        vaultsService.getAlbumById(route.params.vaultId)
+        await vaultsService.getVaultById(route.params.vaultId)
     }
     catch (error) {
         Pop.error(error);
-        router.push({ name: 'Home' })
-        // if (error instanceof AxiosError && error.response.data.includes('Invalid id')) {
-        // }
+        logger.error("Could not get this album", error)
+        if (error instanceof AxiosError && error.response.data.includes('Invalid id')) {
+            router.push({ name: 'Home' })
+        }
     }
 }
 
@@ -47,8 +49,10 @@ async function getKeepsByVaultId() {
 }
 
 async function deleteVault(vaultId) {
-    Pop.confirm('Are you sure you want to delete this vault?')
-    vaultsService.deleteVault(vaultId)
+    if (await Pop.confirm('Are you sure you want to delete this vault?')) {
+        vaultsService.deleteVault(vaultId)
+        router.push({ name: 'Home' })
+    }
 }
 </script>
 
@@ -76,7 +80,7 @@ async function deleteVault(vaultId) {
             <div v-if="keeps.length == 1">1 Keep</div>
             <div v-else>{{ keeps.length }} Keeps</div>
         </div>
-        <div class="text-end">
+        <div class="text-end" v-if="vault?.creatorId == account?.id">
             <div @click="deleteVault(vault?.id)" class="btn btn-danger rounded-pill">Delete Vault</div>
         </div>
         <div class="row mt-5">

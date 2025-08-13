@@ -1,5 +1,7 @@
 
 
+using Microsoft.AspNetCore.Http.HttpResults;
+
 namespace keeper.Services;
 
 public class VaultKeepService
@@ -30,6 +32,8 @@ public class VaultKeepService
 
     internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
     {
+        Vault vault = _vaultsService.GetVaultById(vaultKeepData.VaultId);
+        if (vault.CreatorId != vaultKeepData.CreatorId) throw new Exception("You cant add keeps to another user's vault!");
         VaultKeep vaultKeep = _vaultKeepRepository.CreateVaultKeep(vaultKeepData);
         return vaultKeep;
     }

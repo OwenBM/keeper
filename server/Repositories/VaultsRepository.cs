@@ -92,7 +92,7 @@ public class VaultsRepository
         {
             vault.Creator = account;
             return vault;
-        }, new { VaultId = vaultId }).SingleOrDefault();
+        }, new { VaultId = vaultId }).FirstOrDefault();
         return vault;
     }
 }

@@ -57,7 +57,7 @@ public class VaultsService
         if (vault == null) throw new Exception($"Invalid id: {vaultId}");
         if (vault.IsPrivate == true && vault.CreatorId != userInfo?.Id)
         {
-            throw new Exception($"Invalid id: '{vaultId}");
+            throw new Exception($"Invalid id: {vaultId}");
         }
         return vault;
     }
