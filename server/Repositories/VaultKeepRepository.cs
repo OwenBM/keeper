@@ -72,4 +72,16 @@ public class VaultKeepRepository
         VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new { vaultKeepId }).SingleOrDefault();
         return vaultKeep;
     }
+
+    internal void AddKeepCount(VaultKeep vaultKeep)
+    {
+        string sql = "UPDATE keeps SET kept = kept + 1 WHERE id = @KeepId;";
+        _db.Execute(sql, vaultKeep);
+    }
+    internal void DecreaseKeepCount(VaultKeep vaultKeep)
+    {
+        string sql = "UPDATE keeps SET kept = kept - 1 WHERE id = @KeepId;";
+        _db.Execute(sql, vaultKeep);
+    }
+
 }

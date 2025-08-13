@@ -12,7 +12,7 @@ const account = computed(() => AppState.account)
   <nav class="navbar navbar-expand-md border">
     <div class="container gap-2">
       <RouterLink :to="{ name: 'Home' }" class="d-flex align-items-center text-light">
-        <button class="fs-5 btn btn-secondary">Home</button>
+        <button class="fs-5 btn btn-creme">Home</button>
       </RouterLink>
       <!-- collapse button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
@@ -20,8 +20,8 @@ const account = computed(() => AppState.account)
         <span class="mdi mdi-menu text-light"></span>
       </button>
       <div v-if="account">
-        <button class="btn btn-secondary-outline fs-4" data-bs-toggle="modal" data-bs-target="#CreateAlbumModal">
-          Album<span class="mdi mdi-plus"></span>
+        <button class="btn btn-secondary-outline fs-4" data-bs-toggle="modal" data-bs-target="#CreateVaultModal">
+          Vault<span class="mdi mdi-plus"></span>
         </button>
         <button class="btn btn-secondary-outline fs-4" data-bs-toggle="modal" data-bs-target="#CreateKeepModal">
           Keep<span class="mdi mdi-plus"></span>

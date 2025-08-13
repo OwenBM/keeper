@@ -85,7 +85,7 @@ async function editProfile() {
                 <div class="fs-4 fw-bold">Vaults</div>
                 <div class="row">
                     <div v-for="vault in vaults" :key="vault.id"
-                        class="col-md-4 col-lg-3 col-sm-6 d-flex justify-content-center">
+                        class="col-lg-3 col-md-6 d-flex justify-content-center">
                         <VaultCard :vault="vault" />
                     </div>
                 </div>

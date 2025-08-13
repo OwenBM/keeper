@@ -36,11 +36,13 @@ async function deleteKeep(keepId) {
         <div class="keep-card position-relative mb-4 shadow rounded item">
             <div data-bs-toggle="modal" data-bs-target="#KeepDetailsModal" @click="getKeepById(keep.id)">
                 <img :src="keep.img" alt="" class="img-card rounded">
-                <div class="keep-name text-white fs-4 ms-1 shadow">
-                    {{ keep.name }}
-                </div>
-                <div class="keep-profile" v-if="keep.creator">
-                    <img class="profile-picture m-2 shadow-heavier" :src="keep.creator.picture" alt="">
+                <div class="keep-info d-flex justify-content-between">
+                    <div class="keep-name text-white fs-4 ms-1">
+                        {{ keep.name }}
+                    </div>
+                    <div class="keep-profile" v-if="keep.creator">
+                        <img class="profile-picture m-2 shadow-heavier" :src="keep.creator.picture" alt="">
+                    </div>
                 </div>
             </div>
             <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep.id)" class="delete-button"> <span
@@ -65,17 +67,27 @@ async function deleteKeep(keepId) {
     width: 100%;
 }
 
-.keep-name {
+.keep-info {
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%;
+    // background-color: linear-gradient(90deg, #000000, #0000006b);
+    background-image: linear-gradient(to top, #000000bd, #00000000);
+
 }
 
-.keep-profile {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
+// .keep-name {
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+// }
+
+// .keep-profile {
+//     position: absolute;
+//     bottom: 0;
+//     right: 0;
+// }
 
 .delete-button {
     position: absolute;

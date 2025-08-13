@@ -37,4 +37,11 @@ async function getAllKeeps() {
   columns: 250px;
   column-gap: 1rem;
 }
+
+@media only screen and (max-width: 550px) {
+  .keep-card {
+    columns: 30vw;
+    column-gap: 1rem;
+  }
+}
 </style>

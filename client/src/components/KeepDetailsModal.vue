@@ -45,10 +45,10 @@ async function deleteVaultKeep(keepId) {
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="row" v-if="AppState.Keep">
-                        <div class="col-6 p-0">
+                        <div class="col-md-6 p-0">
                             <img :src="keep.img" alt="" class="modal-image rounded-start">
                         </div>
-                        <div class="col-6 bg-light-creme rounded-end">
+                        <div class="col-md-6 bg-light-creme rounded-end">
                             <div class="d-flex justify-content-between align-items-center flex-column h-100">
                                 <div class=" d-flex justify-content-center">
                                     <div class="me-4"><span class="mdi mdi-eye-outline me-1"></span>{{ keep.views }}

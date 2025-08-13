@@ -20,6 +20,7 @@ public class VaultKeepService
         VaultKeep vaultKeep = getVaultKeepById(vaultKeepId);
         if (vaultKeep.CreatorId != userInfo.Id) throw new Exception("you cannot delete another user's vaultkeep!");
         _vaultKeepRepository.DeleteVaultKeep(vaultKeepId);
+        _vaultKeepRepository.DecreaseKeepCount(vaultKeep);
         string message = $"The vaultkeep with the id of '{vaultKeepId} has been deleted!";
         return message;
     }
@@ -35,6 +36,7 @@ public class VaultKeepService
         Vault vault = _vaultsService.GetVaultById(vaultKeepData.VaultId);
         if (vault.CreatorId != vaultKeepData.CreatorId) throw new Exception("You cant add keeps to another user's vault!");
         VaultKeep vaultKeep = _vaultKeepRepository.CreateVaultKeep(vaultKeepData);
+        _vaultKeepRepository.AddKeepCount(vaultKeep);
         return vaultKeep;
     }
 

@@ -30,7 +30,7 @@ function clearForm() {
 
 
 <template>
-    <div class="modal fade" id="CreateAlbumModal">
+    <div class="modal fade" id="CreateVaultModal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

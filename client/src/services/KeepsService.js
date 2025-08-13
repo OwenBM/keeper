@@ -15,7 +15,7 @@ class KeepsService{
   async createKeep(keepData) {
     const response = await api.post("api/keeps", keepData)
     logger.log(response.data)
-    AppState.Keeps.push(response.data)
+    AppState.Keeps.push(new Keep(response.data))
   }
   async getKeepById(keepId) {
     AppState.Keep = null
