@@ -34,8 +34,11 @@ function clearForm() {
     <div class="modal fade" id="CreateKeepModal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Keep</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
-                    <h2 class="mb-4 text-center">Create Keep</h2>
                     <form @submit.prevent="createKeep()">
                         <div class="row">
                             <div class="col-6">

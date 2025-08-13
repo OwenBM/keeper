@@ -32,33 +32,37 @@ async function deleteKeep(keepId) {
 
 
 <template>
-    <div class="keep-card position-relative mb-4 gradient shadow">
-        <div data-bs-toggle="modal" data-bs-target="#KeepDetailsModal" @click="getKeepById(keep.id)">
-            <img :src="keep.img" alt="" class="img-card rounded">
-            <div class="keep-name text-white fs-4 ms-1 shadow">
-                {{ keep.name }}
+    <div class="hover-craft">
+        <div class="keep-card position-relative mb-4 shadow rounded item">
+            <div data-bs-toggle="modal" data-bs-target="#KeepDetailsModal" @click="getKeepById(keep.id)">
+                <img :src="keep.img" alt="" class="img-card rounded">
+                <div class="keep-name text-white fs-4 ms-1 shadow">
+                    {{ keep.name }}
+                </div>
+                <div class="keep-profile" v-if="keep.creator">
+                    <img class="profile-picture m-2 shadow-heavier" :src="keep.creator.picture" alt="">
+                </div>
             </div>
-            <div class="keep-profile" v-if="keep.creator">
-                <img class="profile-picture m-2 shadow-heavier" :src="keep.creator.picture" alt="">
-            </div>
+            <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep.id)" class="delete-button"> <span
+                    class="bg-red text-white px-2 hover circle">x</span></div>
         </div>
-        <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep.id)" class="delete-button"> <span
-                class="bg-red text-white px-2 hover circle">x</span></div>
     </div>
 
 </template>
 
 
 <style lang="scss" scoped>
-.gradient {
-    background: #000000;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.77) 0%, rgba(0, 0, 0, 0) 100%);
+.hover-craft {
+    &:hover {
+        transform: scale(1.05);
+        transition: .5s;
+        // transition-duration: .5s;
+    }
 }
 
 .img-card {
     height: 40%;
     width: 100%;
-    z-index: 0
 }
 
 .keep-name {

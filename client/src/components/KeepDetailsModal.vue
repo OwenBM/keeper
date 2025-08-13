@@ -29,7 +29,11 @@ async function createVaultKeep() {
 }
 
 async function deleteVaultKeep(keepId) {
-    vaultKeepsService.deleteVaultKeep(keepId)
+    // get the correct saved Keep from the appstate
+    let savedKeepToDelete = AppState.vaultKeeps.find(vk => vk.id == keepId)
+    // logger.log('-- >', savedKeepToDelete)
+    vaultKeepsService.deleteVaultKeep(savedKeepToDelete)
+    closeModal()
 }
 
 </script>
@@ -67,7 +71,7 @@ async function deleteVaultKeep(keepId) {
                                         <button type="submit" class="btn btn-lavender ms-3">save</button>
                                     </form>
                                     <div v-if="AppState.keepInVault">
-                                        <button @click="deleteVaultKeep(AppState.vaultKeep)"
+                                        <button @click="deleteVaultKeep(keep.id)"
                                             class="btn btn-lavender-outline remove-vault-button">remove from
                                             vault</button>
                                     </div>
