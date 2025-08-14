@@ -19,18 +19,18 @@ class ProfileService{
         const response = await api.get(`api/profiles/${profileId}/keeps`)
         // logger.log(response.data)
         AppState.Keeps = response.data.map(pojo => new Keep(pojo))
-        logger.log("profile keeps", AppState.Keeps)
+        // logger.log("profile keeps", AppState.Keeps)
     }
     async getVaultsByProfileId(profileId) {
         const response = await api.get(`api/profiles/${profileId}/vaults`)
         // logger.log(response.data)
         AppState.vaults = response.data.map(pojo => new Vault(pojo))
-        logger.log("profile vaults", AppState.vaults)
+        // logger.log("profile vaults", AppState.vaults)
     }
     async getProfilebyId(profileId) {
         AppState.profile = null
         const response = await api.get(`api/profiles/${profileId}`)
-        logger.log(response.data)
+        // logger.log(response.data)
         AppState.profile = new Profile(response.data)
     }
 

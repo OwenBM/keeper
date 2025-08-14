@@ -5,22 +5,22 @@ import { AppState } from "@/AppState.js"
 
 class KeepsService{
   async deleteKeep(keepId) {
-      const response = await api.delete(`api/keeps/${keepId}`)
-      logger.log(response.data)
+      await api.delete(`api/keeps/${keepId}`)
+      // logger.log(response.data)
       const newKeeps = AppState.Keeps.filter(pojo => pojo['id'] !== keepId)
-      logger.log(newKeeps)
+      // logger.log(newKeeps)
       AppState.Keeps = newKeeps
   }
 
   async createKeep(keepData) {
     const response = await api.post("api/keeps", keepData)
-    logger.log(response.data)
+    // logger.log(response.data)
     AppState.Keeps.push(new Keep(response.data))
   }
   async getKeepById(keepId) {
     AppState.Keep = null
     const response = await api.get(`api/keeps/${keepId}`)
-    logger.log(response.data)
+    // logger.log(response.data)
     AppState.Keep = new Keep(response.data)
   }
 

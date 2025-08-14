@@ -24,7 +24,7 @@ async function getAllKeeps() {
 
 <template>
   <section class="container-fluid mt-3">
-    <div class=" keep-card justify-content-center">
+    <div class="keep-card justify-content-center">
       <div class="" v-for="keep in keeps" :key="'keep-id-' + keep.id" :title="'take a look at ' + keep.name">
         <KeepCard :keep="keep" />
       </div>

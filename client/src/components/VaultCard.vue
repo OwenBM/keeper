@@ -11,7 +11,7 @@ defineProps({
 
 <template>
     <RouterLink :to="{ name: 'Vault', params: { vaultId: vault.id } }">
-        <div class="position-relative mb-3 shadow">
+        <div class="position-relative mb-3 shadow hover-craft">
             <img :src="vault.img" alt="broken image..." class="vault-bg rounded">
             <div class="text-uppercase text-white vault-name m-3 fs-5">{{ vault.name }}</div>
             <div v-if="vault.isPrivate" class="private-icon px-1 m-2" title="private"><span class="mdi mdi-lock"></span>
@@ -24,6 +24,7 @@ defineProps({
 <style lang="scss" scoped>
 .vault-bg {
     height: 20vh;
+    width: 200px;
     object-fit: cover;
 }
 

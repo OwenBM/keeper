@@ -43,11 +43,11 @@ async function deleteKeep(keepId) {
 
 
 <template>
-    <div class="hover-craft">
+    <div class="hover-craft rounded">
         <div class="keep-card position-relative mb-4 shadow rounded item">
             <div data-bs-toggle="modal" data-bs-target="#KeepDetailsModal" @click="getKeepById(keep.id)">
                 <img :src="keep.img" alt="" class="img-card rounded">
-                <div class="keep-info d-flex justify-content-between">
+                <div class="keep-info d-flex justify-content-between rounded">
                     <div class="keep-name text-white fs-4 ms-1">
                         {{ keep.name }}
                     </div>
@@ -66,14 +66,6 @@ async function deleteKeep(keepId) {
 
 
 <style lang="scss" scoped>
-.hover-craft {
-    &:hover {
-        transform: scale(1.05);
-        transition: .5s;
-        // transition-duration: .5s;
-    }
-}
-
 .img-card {
     height: 40%;
     width: 100%;

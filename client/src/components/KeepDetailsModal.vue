@@ -56,8 +56,6 @@ async function deleteVaultKeep(keepId) {
 
 
 <template>
-    <!-- FIXME make sure tall images don't cut off top of modal -->
-    <!-- TODO do that ^ -->
     <div id="KeepDetailsModal" class="modal fade">
         <div class="modal-dialog modal-size modal-dialog-centered">
             <div class="modal-content">

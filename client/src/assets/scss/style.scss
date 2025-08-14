@@ -1,4 +1,5 @@
 @import '_main.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 #app {
   display: flex;
@@ -24,4 +25,22 @@ main {
   width: auto;
   aspect-ratio: 1/1;
   border-radius: 50%;
+}
+
+.hover-craft {
+  &:hover {
+    transform: scale(1.05);
+    transition: .5s;
+    // transition-duration: .5s;
+  }
+}
+
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
