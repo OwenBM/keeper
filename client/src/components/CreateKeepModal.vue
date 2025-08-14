@@ -1,6 +1,7 @@
 <script setup>
 import { keepsService } from '@/services/KeepsService.js';
 import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { Modal } from 'bootstrap';
 import { ref } from 'vue';
 
@@ -13,17 +14,27 @@ const keepData = ref({
 })
 
 async function createKeep() {
-    logger.log(keepData.value)
-    keepsService.createKeep(keepData.value)
-    clearForm()
-    Modal.getOrCreateInstance('#CreateKeepModal').hide();
+    try {
+        logger.log(keepData.value)
+        keepsService.createKeep(keepData.value)
+        clearForm()
+        Modal.getOrCreateInstance('#CreateKeepModal').hide();
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 
 function clearForm() {
-    keepData.value = {
-        name: "",
-        img: "",
-        description: "",
+    try {
+        keepData.value = {
+            name: "",
+            img: "",
+            description: "",
+        }
+    }
+    catch (error) {
+        Pop.error(error);
     }
 }
 

@@ -2,12 +2,10 @@
 
 </script>
 
+
 <template>
-  <div class="about">
-    <h1>This is the about page</h1>
-  </div>
+    This is the about page
 </template>
 
-<style scoped lang="scss">
 
-</style>
+<style lang="scss" scoped></style>

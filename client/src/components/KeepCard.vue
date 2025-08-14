@@ -18,13 +18,24 @@ defineProps({
 const account = computed(() => AppState.account)
 
 async function getKeepById(keepId) {
-    await keepsService.getKeepById(keepId)
+    try {
+        await keepsService.getKeepById(keepId)
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 
 async function deleteKeep(keepId) {
-    // logger.log("button!", keepId)
-    await Pop.confirm("are you sure you want to delete your keep?")
-    keepsService.deleteKeep(keepId)
+    try {
+        if (await Pop.confirm("are you sure you want to delete your keep?")) {
+            keepsService.deleteKeep(keepId)
+        }
+
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 
 }
 
@@ -41,7 +52,8 @@ async function deleteKeep(keepId) {
                         {{ keep.name }}
                     </div>
                     <div class="keep-profile" v-if="keep.creator">
-                        <img class="profile-picture m-2 shadow-heavier" :src="keep.creator.picture" alt="">
+                        <img class="profile-picture m-2 shadow-heavier" :src="keep.creator.picture"
+                            :title="keep.creator.name" alt="">
                     </div>
                 </div>
             </div>

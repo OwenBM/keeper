@@ -3,13 +3,14 @@ import { AppState } from '@/AppState.js';
 import { keepsService } from '@/services/KeepsService.js';
 import { vaultKeepsService } from '@/services/VaultKeepsService.js';
 import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { Modal } from 'bootstrap';
 import { computed, ref } from 'vue';
 
 
 
 const keep = computed(() => AppState.Keep)
-const vaults = computed(() => AppState.vaults)
+const vaults = computed(() => AppState.myVaults)
 
 const vaultkeepData = ref({
     vaultId: 0,
@@ -17,29 +18,46 @@ const vaultkeepData = ref({
 })
 
 function closeModal() {
-    Modal.getOrCreateInstance('#KeepDetailsModal').hide()
+    try {
+        Modal.getOrCreateInstance('#KeepDetailsModal').hide()
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 
 
 async function createVaultKeep() {
-    vaultkeepData.value.keepId = keep.value.id
-    vaultKeepsService.createVaultKeep(vaultkeepData.value)
-    // logger.log(vaultkeepData.value)
-    closeModal()
+    try {
+        vaultkeepData.value.keepId = keep.value.id
+        vaultKeepsService.createVaultKeep(vaultkeepData.value)
+        // logger.log(vaultkeepData.value)
+        closeModal()
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 
 async function deleteVaultKeep(keepId) {
-    // get the correct saved Keep from the appstate
-    let savedKeepToDelete = AppState.vaultKeeps.find(vk => vk.id == keepId)
-    // logger.log('-- >', savedKeepToDelete)
-    vaultKeepsService.deleteVaultKeep(savedKeepToDelete)
-    closeModal()
+    try {
+        // get the correct saved Keep from the appstate
+        let savedKeepToDelete = AppState.vaultKeeps.find(vk => vk.id == keepId)
+        // logger.log('-- >', savedKeepToDelete)
+        vaultKeepsService.deleteVaultKeep(savedKeepToDelete)
+        closeModal()
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 
 </script>
 
 
 <template>
+    <!-- FIXME make sure tall images don't cut off top of modal -->
+    <!-- TODO do that ^ -->
     <div id="KeepDetailsModal" class="modal fade">
         <div class="modal-dialog modal-size modal-dialog-centered">
             <div class="modal-content">
@@ -97,7 +115,7 @@ async function deleteVaultKeep(keepId) {
 <style lang="scss" scoped>
 .modal-image {
     width: 100%;
-    height: 100%;
+    height: 90vh;
     object-fit: cover;
 }
 

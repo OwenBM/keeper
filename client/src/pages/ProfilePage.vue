@@ -6,7 +6,7 @@ import { accountService } from '@/services/AccountService.js';
 import { profileService } from '@/services/ProfileService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -15,6 +15,17 @@ const route = useRoute();
 const profile = computed(() => AppState.profile)
 const keeps = computed(() => AppState.Keeps)
 const vaults = computed(() => AppState.vaults)
+
+
+watch(route, () => {
+    logger.log('route changed!');
+})
+
+watch(route, () => {
+    getProfilebyId();
+    getKeepsByProfileId();
+    getVaultsByProfileId();
+})
 
 onMounted(() => {
     getProfilebyId();
